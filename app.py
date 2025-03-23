@@ -1,14 +1,12 @@
-
-
-
+from sentimental import analyze
 from transformers import AutoModelForCausalLM, AutoProcessor, AutoConfig
 import torch
 from PIL import Image
 import requests
+from flask import Flask, request, jsonify, render_template
 import io
-from flask import Flask, request, jsonify
 
-#Initialize the Flask application
+# Flask app setup
 app = Flask(__name__)
 
 # Device setup
@@ -37,28 +35,37 @@ def run_ocr(image):
     )
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=False)[0]
     parsed_answer = processor.post_process_generation(generated_text, task=task_prompt, image_size=(image.width, image.height))
-
     return parsed_answer.get("<OCR>","No text detected")
 
-#Flask funtion to call the OCR funtion
-@app.route('/ocr', methods=['POST'])
-def ocr():
-    if "image" not in request.files:
-        return jsonify ({"Error":"There is no uploaded Image"}), 400
-    
-    image_file = request.files["image"]
-    image = Image.open(io.BytesIO(image_file.read()))
-    
-    Extracted_text = run_ocr(image)
-    return jsonify({"Extracted Text":Extracted_text})
+# Flask Funtion 
+@app.route("/", methods=["GET", "POST"])
+def index():
+    extracted_text = ""
+    sentiment = ""
+    error = None  # Initialize error variable
 
-if __name__ == '__main__':
-    app.run(debug=True, host = "0.0.0.0", port = "5000")
+    if request.method == "POST":
+        if "image" not in request.files:
+            error = "No image uploaded"
+        else:
+            file = request.files["image"]
+            image = Image.open(io.BytesIO(file.read()))
+            
+            extracted_text = run_ocr(image)
+            sentiment = analyze(extracted_text)
+
+    return render_template("index.html", extracted_text=extracted_text, sentiment=sentiment, error=error)
+
+if __name__ == "__main__":
+    app.run(debug=True, host = "0.0.0.0", port = 5000)
+
+
+
+
 
 # Load image
 # image_path = "/home/jinwoo/Desktop/handwriting_recognition/test2.jpeg"
 # image = Image.open(image_path)
 # Perform OCR
 # ocr_text = run_ocr(image)
-# print("Extracted Text:", ocr_text)
-
+# print(analyze(ocr_text))

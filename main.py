@@ -1,6 +1,4 @@
-
-
-
+from sentimental import analyze
 from transformers import AutoModelForCausalLM, AutoProcessor, AutoConfig
 import torch
 from PIL import Image
@@ -40,4 +38,4 @@ image = Image.open(image_path)
 
 # Perform OCR
 ocr_text = run_ocr(image)
-print("Extracted Text:", ocr_text)
+print(analyze(ocr_text))

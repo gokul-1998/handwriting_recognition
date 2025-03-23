@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting OCR & Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>OCR & Sentiment Analysis</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Result</button>
+        </form>
+
+        {% if extracted_text %}
+        <div class="output">
+            <h3>Extracted Text:</h3>
+            <p>{{ extracted_text }}</p>
+        </div>
+        {% endif %}
+
+        {% if sentiment %}
+        <div class="output sentiment">
+            <h3>Sentiment Analysis:</h3>
+            <p>{{ sentiment }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="output error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

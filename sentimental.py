@@ -10,16 +10,16 @@ sia = SentimentIntensityAnalyzer()
 def analyze(text):
     scores = sia.polarity_scores(text)
     # classification of sntiment using the scores
-    if scores['compound'] >= 0.05:
+    if scores['compound'] > 0.5:
         sentiment = "Positive"
-    elif scores['compound'] <= -0.05:
+    elif scores['compound'] < 0.5:
         sentiment = "Negative"
     else:
         sentiment = "Neutral"
-    # return {"Text": text, "Analysis": sentiment, "scores": scores}
-    return "Analysis: " + sentiment
+    return "Analysis:"+ sentiment
+# return "Analysis: " + sentiment
 
 #function call
-line = "I love this amazing project!"
-result = analyze(line)
-print(result)
+# line = "I dont hate this amazing project!"
+# result = analyze(line)
+# print(result)
