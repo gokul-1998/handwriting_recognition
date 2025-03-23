@@ -22,7 +22,7 @@ Ensure you have the following installed:
 2. Create environment file (optional):
    ```sh
    python3 -m venv env
-   source env/bin/activate #windows
+   source env/bin/activate 
    ```
 3. Install dependencies:
    ```sh
