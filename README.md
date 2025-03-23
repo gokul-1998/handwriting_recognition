@@ -24,7 +24,6 @@ Ensure you have the following installed:
    python3 -m venv env
    source env/bin/activate #windows
    ```
-   ```
 3. Install dependencies:
    ```sh
    pip install -r requirements.txt
