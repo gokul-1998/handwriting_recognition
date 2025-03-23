@@ -1,14 +1,12 @@
 # Handwriting OCR Readme
 
 ## Project Overview
-This is a simple Flask application that serves as a starting point for building a web application. It includes basic routes, template rendering, and database integration.
+This is a simple Flask application that extracts the text from image and perform sentiment analysis in that in web application. It includes basic routes, template rendering.
 
 ## Features
-- User authentication (Login/Signup)
-- Database integration (SQLite/PostgreSQL)
-- API endpoints
-- Template rendering using Jinja2
-- Static file handling (CSS, JS, Images)
+- Image upload
+- Extration from image
+- Sentimental analysis
 
 ## Installation
 ### Prerequisites
