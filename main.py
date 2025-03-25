@@ -5,7 +5,7 @@ from PIL import Image
 import requests
 
 # Device setup
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = "cpu"
 
 # Load Florence-2 model and processor
 model_name = "gokaygokay/Florence-2-Flux-Large"
@@ -33,7 +33,7 @@ def run_ocr(image):
     return parsed_answer["<OCR>"]
 
 # Load image
-image_path = "/home/jinwoo/Desktop/handwriting_recognition/test2.jpeg"
+image_path = "test_images/test2.jpeg"
 image = Image.open(image_path)
 
 # Perform OCR

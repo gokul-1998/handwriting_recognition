@@ -2,7 +2,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 
 # Download the model"lexicon" for analysis
-# nltk.download('vader_lexicon')
+nltk.download('vader_lexicon')
 
 # Initialize sentiment analyzer
 sia = SentimentIntensityAnalyzer()
