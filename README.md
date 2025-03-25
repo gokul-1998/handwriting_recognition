@@ -12,6 +12,7 @@ This is a simple Flask application that extracts the text from image and perform
 ### Prerequisites
 Ensure you have the following installed:
 - Python (>= 3.x)
+- Python 3.11
 - pip (Python package manager)
 
 ### Setup
@@ -39,3 +40,8 @@ handwriting_recognition/
 |── .gitignore        # Ignore file
 │── README.md         # Project documentation
 ```
+4.Need build in tools
+ Microsoft Visual studio c++ tools
+
+5.Development operating system
+ Windows 11
