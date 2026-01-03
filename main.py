@@ -33,9 +33,10 @@ def run_ocr(image):
     return parsed_answer["<OCR>"]
 
 # Load image
-image_path = "test_images/test2.jpeg"
+image_path = "test_images/test3.png"
 image = Image.open(image_path)
 
 # Perform OCR
 ocr_text = run_ocr(image)
+print(ocr_text)
 print(analyze(ocr_text))
